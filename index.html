@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+ <style>
+      body { margin: 0; overflow: hidden; }
+
+      #start-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 1em 2em;
+        font-size: 1.5em;
+        background: #222;
+        color: white;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      #countdown {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 8em;
+        font-weight: bold;
+        color: white;
+        display: none;
+        z-index: 9;
+        text-shadow: 4px 4px 10px rgba(0,0,0,0.7);
+      }
+    </style>
+
+    </head>
+    <body>
+      
+      <!--basketball--> 
+       <a-scene>
+         <a-camera><a-cursor></a-cursor></a-camera>
+        <a-sphere
+            position="0 0 -5"
+            depth="2"
+            height="2"
+            width="2"
+            animation="
+                property: position;
+                from: 0 0 -5;
+                to: 0 -8 -5;
+                dur: 500;
+                easing: linear;
+                loop: true;
+                dir:alternate;
+                "
+               animation__2="
+               property:rotation;
+               from: 0 0 0;
+               to: 0 90 180;
+               loop:true;
+               dir:alternate;
+              easeinout:elastic;" 
+              
+              animation__3="
+              property:scale;
+              from: 1;
+              to: 0;
+              startEvents:click;"
+                
+            src="https://codehs.com/uploads/c75f52a27709b7f762cca99e16d9f509">
+        </a-sphere>
+        <!--soccer ball-->
+         <a-sphere
+            position="-69 6 -7"
+            depth="2"
+            height="2"
+            width="2"
+            animation="
+                property: position;
+                from: -50 0 -6;
+                to: -50 -8 -6;
+                dur: 500;
+                easing: linear;
+                loop: true;
+                dir:alternate;
+                "
+               animation__2="
+               property:rotation;
+               from: 0 0 0;
+               to: 0 90 180;
+               loop:true;
+               dir:alternate;
+              easeinout:cubic;" 
+              
+              animation__3="
+              property:position;
+              from: -50 0 -6;
+              to: -67 6 -7;
+              startEvents:click;
+              dur:1000ms;"
+              
+              animation__4="
+              property: position;
+              from:-67 6 -7;
+              to: -67 -6 -7;
+              startEvents:click;
+              delay:1000ms;
+              dur:500ms;
+              "
+               animation__5="
+              property:scale;
+              from: 1;
+              to: 0;
+              startEvents:click;
+              delay:2000ms;"
+                
+            src="https://codehs.com/uploads/4bc246fcb6a5c671f4cf35f6b74f7bef">
+        </a-sphere>
+      
+      
+     
+
+  <!-- Audio element -->
+    <audio id="bg-music" loop>
+      <source src="https://codehs.com/uploads/efe976d04115382b09663f0623716eef" type="audio/mpeg">
+    </audio>
+
+    <!-- UI elements -->
+    <button id="start-button">Start Experience</button>
+    <div id="countdown">3</div>
+
+
+
+
+        <a-sky color="gray"></a-sky>
+        <a-box position="0 1 -5" depth="2" height="4" width="0.5" color="green"
+        animation="
+        property: position;
+        from:0 1 -10;
+        to: 0 -7 -10;
+        loop: true;
+        dir:alternate;
+        easinginout:quintic;"
+     animation__2="
+     property: color;
+     from: #17e88e;
+     to:#00aaff;
+     loop:true;
+     dir:alternate;"
+     animation__3="
+              property:scale;
+              from:1;
+              to:0;
+              startEvents:click;"></a-box>
+              <a-cone color="blue" radius-bottom="2" radius-top="0" height="5" position="-5 -8 -3"
+              animation="
+              property:position;
+              from:-5 -7 -3;
+              to: -5 0 -3;
+              loop:true;
+              dir:alternate;
+              easinginout:elastic;
+              dur:500ms;"
+              
+              animation__2="
+              property:rotation;
+              from: 0 0 0;
+              to: 359 0 0;
+              loop:true;
+              dir:alternate;
+              easinginout:cubic;
+              dur:1000ms;
+              "
+                animation__3="
+              property:scale;
+              from:1;
+              to:0;
+              startEvents:click;"></a-cone>
+              <a-torus color="#fc7f03" arc="360" radius="2" radius-tubular="0.1" rotation="90 0 0" position="-67 3 -7"></a-torus>
+<a-cylinder position="-69 -7 -7" radius="1" height="20" color="gray"></a-cylinder>
+<a-box position="-69 6 -7" depth="10" height="6" width="1" color="white"></a-box>
+ 
+ 
+
+          <a-plane position="0 -10 0" rotation="-90 0 -5" width="160" height="90" src="https://codehs.com/uploads/637051be09bfbc2344739dc27580f594"></a-plane>
+       
+       <a-tetrahedron color="yellow" radius="4" position="10 -7 -5"
+rotation="0 0 0"
+  animation="
+               property:rotation;
+               from: 0 0 0;
+               to: 0 90 180;
+               loop:true;
+               dir:alternate;
+              easeinout:quintic;"
+              animation__2="
+              property:scale;
+              from: 1;
+              to: 0;
+              startEvents:click;"
+              animation__3="
+              property:position;
+              from:20 -7 -5;
+              to:10 -7 5;
+              loop:true;
+              dir:alternate;"</a-tetrahedron>
+        </a-scene>
+        
+    <!-- JavaScript -->
+    <script>
+      const music = document.getElementById('bg-music');
+      const startBtn = document.getElementById('start-button');
+      const countdownEl = document.getElementById('countdown');
+
+      startBtn.addEventListener('click', () => {
+        startBtn.style.display = 'none';
+        startCountdown();
+      });
+
+      function startCountdown() {
+        let count = 3;
+        countdownEl.style.display = 'block';
+        countdownEl.textContent = count;
+
+        const interval = setInterval(() => {
+          count--;
+          if (count > 0) {
+            countdownEl.textContent = count;
+          } else {
+            clearInterval(interval);
+            countdownEl.style.display = 'none';
+            music.play();
+          }
+        }, 1000);
+      }
+    </script>
+
+    </body>
+</html>
